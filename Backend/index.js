@@ -10,6 +10,18 @@ app.listen(PORT, () => {
   console.log("Running on localhost:" + PORT);
 });
 
-app.get("/", (req, res) => {
-  res.send("test");
+app.get("/decks", (req, res) => {
+  res.send("test get decks");
+});
+
+app.post("/decks", (req, res) => {
+  res.send("test add deck");
+});
+
+app.put("/decks/:deckId", (req, res) => {
+  res.send("test update deck");
+});
+
+app.delete("/decks/:deckId", (req, res) => {
+  res.send("test remove deck");
 });
