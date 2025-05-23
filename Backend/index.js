@@ -11,6 +11,7 @@ app.listen(PORT, () => {
   console.log("Running on localhost:" + PORT);
 });
 
+<<<<<<< HEAD
 // Endpoints
 
 app.get("/decks", async (req, res) => {
@@ -41,4 +42,20 @@ app.delete("/decks/:deckId", async (req, res) => {
     [deckId]
   );
   res.status(200).json("Deck deleted successfully");
+=======
+app.get("/decks", (req, res) => {
+  res.send("test get decks");
+});
+
+app.post("/decks", (req, res) => {
+  res.send("test add deck");
+});
+
+app.put("/decks/:deckId", (req, res) => {
+  res.send("test update deck");
+});
+
+app.delete("/decks/:deckId", (req, res) => {
+  res.send("test remove deck");
+>>>>>>> 2d9c2e2ab8fa91c068995a33e593746344de3fef
 });
