@@ -2,11 +2,15 @@ import React from 'react'
 import './Decks.css'
 
 const handleAddDeck = () => {
-    // Add Deck
+  // Add Deck
 }
 
 const handleRemoveDeck = (deckId) => {
-    // Remove Deck
+  // Remove Deck
+}
+
+const handleUpdateDeck = (deckId) => {
+  // Update Deck
 }
 
 export default function Decks() {
