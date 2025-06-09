@@ -52,8 +52,23 @@ export default function Decks() {
       }
   }
 
-  const handleUpdateDeck = async (deck_id) => {
-    // Update Deck
+  const handleUpdateDeck = async (deck_id, newName) => {
+    setDeckList(deckList =>
+    deckList.map(deck =>
+      deck.deck_id === deck_id ? { ...deck, name: newName } : deck
+    )
+  );
+    try {
+        const response = await axios({
+          method: "PUT",
+          url: `http://localhost:8080/decks/${deck_id}`,
+          data: {
+            newName: newName
+          }
+        });
+      } catch (error) {
+        console.error("Error updating deck", error);
+      }
   }
 
   const handleChangeDeckName = (e) => {
@@ -67,7 +82,7 @@ export default function Decks() {
       <button className='decks-button' onClick={handleAddDeck}>Add Deck</button>
       <div>
         {deckList.map((deck) => (
-          <DeckCard key={deck.deck_id} deck_id={deck.deck_id} name={deck.name} handleDeleteDeck={handleDeleteDeck}></DeckCard>
+          <DeckCard key={deck.deck_id} deck_id={deck.deck_id} name={deck.name} handleDeleteDeck={handleDeleteDeck} handleUpdateDeck={handleUpdateDeck}></DeckCard>
         ))}
       </div>
     </div>

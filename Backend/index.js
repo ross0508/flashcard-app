@@ -30,15 +30,21 @@ app.post("/decks", async (req, res) => {
   res.status(200).json(deck.rows);
 });
 
-app.put("/decks/:deckId", async (req, res) => {
-  res.send("test update deck");
+app.put("/decks/:deck_id", async (req, res) => {
+  const { deck_id } = req.params;
+  const newName = req.body.newName;
+  const deck = await pool.query(
+    "UPDATE decks SET name = ($1) WHERE deck_id = ($2) RETURNING *",
+    [newName, deck_id]
+  );
+  res.status(200).json("Deck updated successfully");
 });
 
-app.delete("/decks/:deckId", async (req, res) => {
-  const { deckId } = req.params;
+app.delete("/decks/:deck_id", async (req, res) => {
+  const { deck_id } = req.params;
   const deck = await pool.query(
     "DELETE FROM decks WHERE deck_id = ($1) RETURNING *",
-    [deckId]
+    [deck_id]
   );
   res.status(200).json("Deck deleted successfully");
 });
