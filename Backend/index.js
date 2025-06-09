@@ -27,7 +27,7 @@ app.post("/decks", async (req, res) => {
     "INSERT INTO decks (name) VALUES ($1) RETURNING *",
     [deckName]
   );
-  res.status(200).json("Deck created successfully");
+  res.status(200).json(deck.rows);
 });
 
 app.put("/decks/:deckId", async (req, res) => {
