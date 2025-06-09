@@ -41,12 +41,12 @@ export default function Decks() {
     };
 
   const handleDeleteDeck = async (deck_id) => {
+    setDeckList(deckList => deckList.filter(deck => deck.deck_id !== deck_id));
     try {
         const response = await axios({
           method: "DELETE",
           url: `http://localhost:8080/decks/${deck_id}`
         });
-        setDeckList(deckList => deckList.filter(deck => deck.deck_id !== deck_id));
       } catch (error) {
         console.error("Error deleting deck", error);
       }
